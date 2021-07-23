@@ -6,26 +6,38 @@ class Pokedex extends React.Component {
         super();
 
         this.state = {
+            pokemonsList: props.pokemons.filter((pokemon) => pokemon.type === 'Fire'),
             currentPokemon: 0,
         }
         this.handleBack = this.handleBack.bind(this);
         this.handleNext = this.handleNext.bind(this);
+        this.handleFilter = this.handleFilter.bind(this);
     }
 
     handleBack() {
         this.setState(prevState => ({
-            currentPokemon: prevState.currentPokemon ? (prevState.currentPokemon - 1) : this.props.pokemons.length - 1,
+            ...prevState,
+            currentPokemon: prevState.currentPokemon ? (prevState.currentPokemon - 1) : this.state.pokemonsList.length - 1,
         }));
     }
 
     handleNext() {
         this.setState(prevState => ({
-            currentPokemon: (prevState.currentPokemon + 1) % this.props.pokemons.length,
+            ...prevState,
+            currentPokemon: (prevState.currentPokemon + 1) % this.state.pokemonsList.length,
+        }));
+    }
+
+    handleFilter(filter) {
+        this.setState((prevState) => ({
+            ...prevState,
+            currentPokemon: 0,
+            pokemonsList: this.props.pokemons.filter((pokemon) => pokemon.type === filter),
         }));
     }
 
     render() {
-        const pokemon = this.props.pokemons[this.state.currentPokemon];
+        const pokemon = this.state.pokemonsList[this.state.currentPokemon];
 
         return (
             <>
@@ -34,6 +46,8 @@ class Pokedex extends React.Component {
                 </div>
                 <div className="control">
                     <button onClick={this.handleBack}>Anterior</button>
+                    <button onClick={() => this.handleFilter('Fire')}>Fire</button>
+                    <button onClick={() => this.handleFilter('Psychic')}>Psychic</button>
                     <button onClick={this.handleNext}>Próximo</button>
                 </div>
             </>
