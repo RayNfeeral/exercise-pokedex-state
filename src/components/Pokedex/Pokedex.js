@@ -33,7 +33,7 @@ class Pokedex extends React.Component {
         this.setState((prevState) => ({
             ...prevState,
             currentPokemon: 0,
-            pokemonsList: this.props.pokemons.filter((pokemon) => pokemon.type === filter),
+            pokemonsList: this.props.pokemons.filter((pokemon) => pokemon.type === filter || filter === 'All'),
         }));
     }
 
@@ -47,6 +47,7 @@ class Pokedex extends React.Component {
                 </div>
                 <div className="control">
                     <button onClick={this.handleBack}>Anterior</button>
+                    <button onClick={() => this.handleFilter('All')}>All</button>
                     <button onClick={() => this.handleFilter('Fire')}>Fire</button>
                     <button onClick={() => this.handleFilter('Psychic')}>Psychic</button>
                     <button onClick={this.handleNext}>Próximo</button>
