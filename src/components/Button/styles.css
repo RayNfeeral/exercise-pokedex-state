@@ -1,0 +1,15 @@
+.btn {
+  border-radius: 16px;
+  width: 120px;
+  padding: 16px 24px;
+  transition: filter 0.1s linear;
+}
+
+.btn:hover {
+  filter: brightness(0.9);
+}
+
+.btn:active {
+  filter: brightness(0.7);
+  outline: none;
+}

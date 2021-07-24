@@ -1,5 +1,6 @@
 import React from 'react';
 import Pokemon from '../Pokemon/Pokemon';
+import Button from '../Button/Button';
 import './styles.css';
 
 class Pokedex extends React.Component {
@@ -46,11 +47,11 @@ class Pokedex extends React.Component {
                     <Pokemon key={pokemon.id} pokemon={pokemon} />
                 </div>
                 <div className="control">
-                    <button onClick={this.handleBack}>Anterior</button>
-                    <button onClick={() => this.handleFilter('All')}>All</button>
-                    <button onClick={() => this.handleFilter('Fire')}>Fire</button>
-                    <button onClick={() => this.handleFilter('Psychic')}>Psychic</button>
-                    <button onClick={this.handleNext}>Próximo</button>
+                    <Button onClick={this.handleBack}>Anterior</Button>
+                    <Button onClick={() => this.handleFilter('All')}>All</Button>
+                    <Button onClick={() => this.handleFilter('Fire')}>Fire</Button>
+                    <Button onClick={() => this.handleFilter('Psychic')}>Psychic</Button>
+                    <Button onClick={this.handleNext}>Próximo</Button>
                 </div>
             </>
         );
