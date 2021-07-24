@@ -56,7 +56,7 @@ class Pokedex extends React.Component {
                 <div className="filters">
                     { this.state.filters.map((filter) => (
                     <Button
-                        style={{ background: 'orange', color: 'white' }}
+                        className='btn-filter'
                         key={ filter }
                         onClick={ () => { this.handleFilter(filter)}}
                     >
@@ -65,13 +65,16 @@ class Pokedex extends React.Component {
                     )) }
                 </div>
                 <div className="control">
-                    <Button 
-                        style={{ background: 'green', color: 'white' }}
+                    <Button
+                        className='btn-control'
+                        disabled={ this.state.pokemonsList.length === 1 }
                         onClick={this.handleBack}
                     >
                         Anterior
                     </Button>
-                    <Button 
+                    <Button
+                        className='btn-control'
+                        disabled={ this.state.pokemonsList.length === 1 }
                         style={{ background: 'green', color: 'white' }}
                         onClick={this.handleNext}
                     >

@@ -13,3 +13,7 @@
   filter: brightness(0.7);
   outline: none;
 }
+
+.btn:disabled {
+  filter: opacity(0.5);
+}
