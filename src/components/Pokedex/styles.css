@@ -4,3 +4,16 @@
   flex-wrap: wrap;
   margin: 10px 10px;
 }
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px;
+  padding: 8px;
+}
+
+.control {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}

@@ -8,7 +8,14 @@ class Pokedex extends React.Component {
         super();
 
         this.state = {
-            pokemonsList: props.pokemons.filter((pokemon) => pokemon.type === 'Fire'),
+            pokemonsList: props.pokemons,
+            filters: props.pokemons.reduce(
+                (filters, pokemon) => {
+                    if (!filters.includes(pokemon.type))  {
+                        filters.push(pokemon.type);
+                    }
+                    return filters;
+                }, ['All']),
             currentPokemon: 0,
         }
         this.handleBack = this.handleBack.bind(this);
@@ -46,12 +53,30 @@ class Pokedex extends React.Component {
                 <div className="pokedex">
                     <Pokemon key={pokemon.id} pokemon={pokemon} />
                 </div>
+                <div className="filters">
+                    { this.state.filters.map((filter) => (
+                    <Button
+                        style={{ background: 'orange', color: 'white' }}
+                        key={ filter }
+                        onClick={ () => { this.handleFilter(filter)}}
+                    >
+                        { filter }
+                    </Button>
+                    )) }
+                </div>
                 <div className="control">
-                    <Button onClick={this.handleBack}>Anterior</Button>
-                    <Button onClick={() => this.handleFilter('All')}>All</Button>
-                    <Button onClick={() => this.handleFilter('Fire')}>Fire</Button>
-                    <Button onClick={() => this.handleFilter('Psychic')}>Psychic</Button>
-                    <Button onClick={this.handleNext}>Próximo</Button>
+                    <Button 
+                        style={{ background: 'green', color: 'white' }}
+                        onClick={this.handleBack}
+                    >
+                        Anterior
+                    </Button>
+                    <Button 
+                        style={{ background: 'green', color: 'white' }}
+                        onClick={this.handleNext}
+                    >
+                        Próximo
+                    </Button>
                 </div>
             </>
         );
